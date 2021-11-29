@@ -75,8 +75,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::group(['middleware' => ['permiso:crear-folio,']],function(){
 		Route::get('preventivo',[PageController::class,'captura'])->name('informacion.preventivo');
 		Route::get('correctivo',[PageController::class,'correctivo'])->name('informacion.correctivo');
-		Route::post('preventivo',[InformacionController::class,'envio_preventivo'])->name('informacion.preventivo');
-		Route::post('correctivo',[InformacionController::class,'envio_correctivo'])->name('informacion.correctivo'); 
+		Route::post('preventivo',[InformacionController::class,'envio_preventivo']);
+		Route::post('correctivo',[InformacionController::class,'envio_correctivo']); 
 	});	//Grupo que puede crear folios
 	Route::group(['middleware' => ['permiso:modificar-folio,']],function(){
 		Route::get('consulta/{id}',[FoliosController::class,'detalle']);

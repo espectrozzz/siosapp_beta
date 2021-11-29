@@ -2661,7 +2661,6 @@ __webpack_require__.r(__webpack_exports__);
       var folioId;
 
       if (this.detalle) {
-        alert("entró");
         folioModificado = this.folio === this.datos[0][0].folio ? 0 : 1;
         folioId = this.datos[0][0].id_folio;
       }
@@ -4581,11 +4580,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      // Our data object that holds the Laravel paginator data
       laravelData: {},
       data: [],
       distritoData: [],
@@ -4625,43 +4622,35 @@ __webpack_require__.r(__webpack_exports__);
           _this.vacio = false;
         }
 
-        _this.data = response;
-
-        for (var i = 0; i <= response.data.data.length - 1; i++) {
-          _this.estatus_select[i] = response.data.data[i].estatus_id;
-
-          if (response.data.data[i].estatus_descripcion == 'En espera') {
-            _this.play[i] = false;
-          } else {
-            _this.play[i] = true;
-          }
-        } // console.log(this.play);
-        // console.log(this.estatus_select[1],response.data.data[1]);
-
-
-        console.log(response.data.data);
-      }, function (response) {});
+        _this.rellenarSelectEstatus(response.data.data);
+      });
     },
     getPage: function getPage(page) {
       var _this2 = this;
 
       axios.get('/consultaFolios?page=' + page).then(function (response) {
         _this2.$set(_this2.$data, 'laravelData', response.data);
-      }, function (response) {});
+
+        _this2.rellenarSelectEstatus(response.data.data);
+      });
     },
     getPreviousPage: function getPreviousPage() {
       var _this3 = this;
 
       axios.get(this.laravelData['prev_page_url']).then(function (response) {
         _this3.$set(_this3.$data, 'laravelData', response.data);
-      }, function (response) {});
+
+        _this3.rellenarSelectEstatus(response.data.data);
+      });
     },
     getNextPage: function getNextPage() {
       var _this4 = this;
 
       axios.get(this.laravelData['next_page_url']).then(function (response) {
         _this4.$set(_this4.$data, 'laravelData', response.data);
-      }, function (response) {});
+
+        _this4.rellenarSelectEstatus(response.data.data);
+      });
     },
     detalleInfo: function detalleInfo(estatus) {
       if (estatus == 5) {
@@ -4676,14 +4665,16 @@ __webpack_require__.r(__webpack_exports__);
           searchFolio: this.searchFolio,
           searchDistrito: this.$store.state.selected_distrito,
           searchCluster: this.$store.state.selected_cluster,
-          searchEstatus: this.estatus_select,
+          searchEstatus: this.estatus_selected,
           searchFechaIni: this.fechaInicial,
           searchFechaFin: this.fechaFinal,
           searchTipoFolio: this.tFolio_select
         }
       }).then(function (response) {
         _this5.$set(_this5.$data, 'laravelData', response.data);
-      }, function (response) {});
+
+        _this5.rellenarSelectEstatus(response.data.data);
+      });
     },
     getComboSearch: function getComboSearch() {
       var _this6 = this;
@@ -4703,14 +4694,14 @@ __webpack_require__.r(__webpack_exports__);
 
       this.searchFolio = '';
       this.$store.state.selected_distrito = '';
-      this.$store.state.selected_cluster = '';
-      this.estatus_select = '';
+      this.$store.state.selected_cluster = ''; //  this.estatus_select                    =   '';
+
       this.fechaInicial = '';
       this.fechaFinal = '';
       this.tFolio_select = '';
       axios.get('/consultaFolios').then(function (response) {
         _this7.$set(_this7.$data, 'laravelData', response.data);
-      }, function (response) {});
+      });
     },
     enviarScript: function enviarScript(id) {
       this.control_botones = true;
@@ -4785,6 +4776,17 @@ __webpack_require__.r(__webpack_exports__);
             console.log(response.data);
           });
           this.getContactoList();
+        }
+      }
+    },
+    rellenarSelectEstatus: function rellenarSelectEstatus(data) {
+      for (var i = 0; i <= data.length - 1; i++) {
+        this.estatus_select[i] = data[i].estatus_id;
+
+        if (data[i].estatus_descripcion == 'En espera') {
+          this.play[i] = false;
+        } else {
+          this.play[i] = true;
         }
       }
     }

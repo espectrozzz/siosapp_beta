@@ -27,6 +27,7 @@ use Illuminate\Http\Request;
 class FoliosController extends Controller
 {
     use myTrait;
+
     public function consulta(Request $request){
         if(auth()->user()->hasRole('administrador'))
         {
@@ -34,11 +35,11 @@ class FoliosController extends Controller
                                     'd_analisis.estatus_id','c_clusters.descripcion as cluster_descripcion','c_estatus.descripcion as estatus_descripcion',
                                     'd_analisis.created_at as fecha_crea','d_calc_tiempos.eta as eta','d_calc_tiempos.sla as sla',
                                     'd_analisis.id as folio_id','c_tipo_folios.time_max as timeMax')
-                            ->join('c_tipo_folios','d_analisis.tFolio_id','=','c_tipo_folios.id')
-                            ->join('c_distritos','d_analisis.distrito_id','=','c_distritos.id')
-                            ->join('c_clusters','d_analisis.cluster_id','=','c_clusters.id')
-                            ->join('c_estatus','d_analisis.estatus_id','=','c_estatus.id')
-                            ->join('d_calc_tiempos','d_analisis.id','=','d_calc_tiempos.folio_id')
+                            ->leftjoin('c_tipo_folios','d_analisis.tFolio_id','=','c_tipo_folios.id')
+                            ->leftjoin('c_distritos','d_analisis.distrito_id','=','c_distritos.id')
+                            ->leftjoin('c_clusters','d_analisis.cluster_id','=','c_clusters.id')
+                            ->leftjoin('c_estatus','d_analisis.estatus_id','=','c_estatus.id')
+                            ->leftjoin('d_calc_tiempos','d_analisis.id','=','d_calc_tiempos.folio_id')
                             ->orderByDesc('d_analisis.created_at')
                             ->SearchFolio($request->searchFolio)
                             ->SearchDistrito($request->searchDistrito)
@@ -135,18 +136,17 @@ class FoliosController extends Controller
             $analisis->potencia_inicial     =   $request->poIni;
             $analisis->potencia_final       =   $request->poFin;
             $analisis->hora_medicion        =   $request->hraMedicion;
-            
-        if($request->olt != 'null'){
+        if($request->olt){
             $analisis->olt                  =   $request->olt;
         }
-        if($request->ot !='undefined' && $request->ot !='null'){
+        if($request->ot){
             $analisis->OT                   =   $request->ot;
-            // return $request->ot;
         }
+        
 
-        if($request->llegadaFolio != null){
+        if($request->llegadaFolio){
             $analisis->estatus_id           =   2;
-            if($request->activacionFolio != null){
+            if($request->activacionFolio){
                 $analisis->estatus_id       =   3;
             }
         } //Bloque de manejo de estatus
@@ -322,13 +322,13 @@ class FoliosController extends Controller
                 $analisis->causa_id             = $request->cAfectacion;
                 $analisis->clientes_afectados   = $request->nClientes;
                 $analisis->despacho_id          = $request->despachoIos;
-                if($request->ot != null && $request->ot != 'undefined' && $request->ot !='' && $request->ot != 'null'){
+                if($request->ot){
                     $analisis->OT                   =   $request->ot;
                 }
                 $analisis->supervisor_id        = $request->supervisorTTP;
                 $analisis->tecnico_id           = $request->tecnicoIos;
-                $analisis->tipo_folio           = 2;
-                if($request->olt != null && $request->olt != 'undefined' && $request->olt != '' && $request->olt != 'null'){
+                $analisis->tipo_folio           = 2; 
+                if($request->olt){
                     $analisis->olt                  =   $request->olt;
                 }
                 $analisis->estatus_id           = 5;
@@ -350,10 +350,10 @@ class FoliosController extends Controller
         $analisis->supervisor_id        =   $request->supervisorTTP;
         $analisis->tecnico_id           =   $request->tecnicoIos;
         $analisis->estatus_id           =   5;
-        if($request->olt != 'null'){
+        if($request->olt){
             $analisis->olt                  =   $request->olt;
         }
-        if($request->ot !='undefined'){
+        if($request->ot){
             $analisis->OT                   =   $request->ot;
         }
         $analisis->save();

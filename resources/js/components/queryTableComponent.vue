@@ -1,4 +1,3 @@
-
 <template>
 <div>
         <div class="border">
@@ -169,7 +168,6 @@ export default {
  
     data() {
         return {
-            // Our data object that holds the Laravel paginator data
             laravelData:{},
             data:[],
             distritoData:[],
@@ -207,41 +205,25 @@ export default {
                     else{
                         this.vacio = false;
                     }
-                  this.data=response;
-                    for (var i = 0; i <= response.data.data.length - 1; i++) {
-                      this.estatus_select[i] = response.data.data[i].estatus_id;
-                      if (response.data.data[i].estatus_descripcion == 'En espera'){
-                        this.play[i] = false;
-                      }else{
-                        this.play[i] = true;
-                      }
-                  }
-                    // console.log(this.play);
-                  
-                  // console.log(this.estatus_select[1],response.data.data[1]);
-                  console.log(response.data.data);
-
-                
-                }, (response)=>{ 
+                    this.rellenarSelectEstatus(response.data.data);
                 });
             },
             getPage(page){
                 axios.get('/consultaFolios?page='+page).then((response)=>{
                     this.$set(this.$data, 'laravelData', response.data);
-                },(response)=>{
-
+                    this.rellenarSelectEstatus(response.data.data);
                 });
             },
             getPreviousPage(){
                 axios.get(this.laravelData['prev_page_url']).then((response)=>{
                     this.$set(this.$data, 'laravelData', response.data);
-                },(response)=>{
+                    this.rellenarSelectEstatus(response.data.data);
                 });
             },
             getNextPage(){
                 axios.get(this.laravelData['next_page_url']).then((response)=>{
                     this.$set(this.$data, 'laravelData', response.data);
-                },(response)=>{
+                    this.rellenarSelectEstatus(response.data.data);
                 });
             },
             detalleInfo(estatus){
@@ -249,18 +231,16 @@ export default {
                     alert("El folio ya ha sido finalizado");
                 }
             },
-             buscar(){
-
+             buscar(){ 
                     axios.get('/consultaFolios',{params:{searchFolio:this.searchFolio,
                                                          searchDistrito:this.$store.state.selected_distrito,
                                                          searchCluster:this.$store.state.selected_cluster,
-                                                         searchEstatus:this.estatus_select,
+                                                         searchEstatus:this.estatus_selected,
                                                          searchFechaIni:this.fechaInicial,
                                                          searchFechaFin:this.fechaFinal,
                                                          searchTipoFolio:this.tFolio_select}}).then((response)=>{
                          this.$set(this.$data, 'laravelData', response.data);
-                    },(response)=>{
-                        
+                         this.rellenarSelectEstatus(response.data.data);
                     });
              },
              getComboSearch(){
@@ -278,14 +258,12 @@ export default {
                  this.searchFolio                       =   '';
                  this.$store.state.selected_distrito    =   '';
                  this.$store.state.selected_cluster     =   '';
-                 this.estatus_select                    =   '';
+                //  this.estatus_select                    =   '';
                  this.fechaInicial                      =   '';
                  this.fechaFinal                        =   '';
                  this.tFolio_select                     =   '';
                  axios.get('/consultaFolios').then((response)=>{
                          this.$set(this.$data, 'laravelData', response.data);
-                    },(response)=>{
-                        
                     });
              },
              enviarScript(id){
@@ -359,6 +337,17 @@ export default {
                   this.getContactoList();
                 }
               }
+            },
+            rellenarSelectEstatus(data){
+               for (var i = 0; i <= data.length - 1; i++) {
+                      this.estatus_select[i] = data[i].estatus_id;
+
+                      if (data[i].estatus_descripcion == 'En espera'){
+                        this.play[i] = false;
+                      }else{
+                        this.play[i] = true;
+                      }
+                  }
             },
     }
  

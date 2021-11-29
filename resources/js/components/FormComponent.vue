@@ -789,7 +789,6 @@
                 let folioModificado;
                 let folioId;
                 if (this.detalle){
-                    alert("entró");
                 folioModificado = this.folio === this.datos[0][0].folio ? 0 : 1;
                 folioId = this.datos[0][0].id_folio;
                 }
