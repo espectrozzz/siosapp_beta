@@ -1,0 +1,16 @@
+INSERT INTO c_tecnicos(Nombre,estado_id) VALUES('Daniel Gonzalez',1);
+INSERT INTO c_tecnicos(Nombre,estado_id) VALUES('Issac Velazquez',1);
+INSERT INTO c_tecnicos(Nombre,estado_id) VALUES('Abraham Alpizar',1);
+INSERT INTO c_tecnicos(Nombre,estado_id) VALUES('Jose Luis Peralta',1);
+INSERT INTO c_tecnicos(Nombre,estado_id) VALUES('Alfonso Brito',1);
+INSERT INTO c_tecnicos(Nombre,estado_id) VALUES('Victor Manuel Lopez Perez',1);
+INSERT INTO c_tecnicos(Nombre,estado_id) VALUES('Cristian Elihu Chavez Salinas',1);
+INSERT INTO c_tecnicos(Nombre,estado_id) VALUES('Aureliano Rojas Hernandez',1);
+INSERT INTO c_tecnicos(Nombre,estado_id) VALUES('Gabriel Alberto Briones Zepeda',1);
+INSERT INTO c_tecnicos(Nombre,estado_id) VALUES('Miguel Aguilar',1);
+INSERT INTO c_tecnicos(Nombre,estado_id) VALUES('Daniel Aguilar',1);
+INSERT INTO c_tecnicos(Nombre,estado_id) VALUES('Jose Gabriel',1);
+INSERT INTO c_tecnicos(Nombre,estado_id) VALUES('Tomas Ramirez',1);
+INSERT INTO c_tecnicos(Nombre,estado_id) VALUES('Leonel Jony',1);
+INSERT INTO c_tecnicos(Nombre,estado_id) VALUES('Armando Lara',1);
+INSERT INTO c_tecnicos(Nombre,estado_id) VALUES('Antonio Castañeda',1);
