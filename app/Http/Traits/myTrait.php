@@ -45,9 +45,11 @@ $bddUbicacion->ubicacion = $direccion;
 $bddUbicacion->save();
 
     //Cuerpo de mensaje
-            $mensaje = '*FOLIO*:' . $analisis->folio . "\n".
-            //  '*OT*: '. $consulta[0]->ot . "\n".
-            $consulta[0]->tfolio . "\n".
+            $mensaje = '*FOLIO*:' . $analisis->folio . "\n";
+        if($analisis->OT){
+            $mensaje .= '*OT*: '. $analisis->OT . "\n";      // Verifica si el folio tiene capturado OT
+        }
+            $mensaje .= $consulta[0]->tfolio . "\n".
             '*Distrito*: '. $consulta[0]->distrito. "\n".
             '*Cluster*: '. $consulta[0]->cluster . "\n".
             '*OLT*: '. $analisis->olt . "\n".
