@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Client\Request;
+use Illuminate\Validation\Rule;
 
 class PreventivoFormRequest extends FormRequest
 {
@@ -25,7 +26,7 @@ class PreventivoFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'folio' => 'required|numeric|min:0|unique:App\Models\d_analisi,folio',
+            'folio' => 'required|numeric|min:0|'.Rule::unique('d_analisis')->where('d_analisis.tfolio_id', $this->tFolio),
             'tFolio' => 'required',
             'ot' => '',
             'turno' => 'required',

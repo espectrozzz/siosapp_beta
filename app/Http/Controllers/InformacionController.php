@@ -15,16 +15,12 @@ use App\Models\d_coo_daño;
 use App\Models\d_pausado;
 use App\Models\d_seguimiento;
 use App\Models\d_ubicacione;
-use App\Notifications\tecnicoNotification;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Intervention\Image\ImageManagerStatic as Image;
 
 class InformacionController extends Controller
 {
     public function envio_correctivo(CorrectivoFormRequest $request){
       
-       
         $analisis=new d_analisi;
         $analisis->folio = $request->folio;
         $analisis->tfolio_id = $request->tFolio;

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class actualizarFormRequest extends FormRequest
 {
@@ -26,7 +27,9 @@ class actualizarFormRequest extends FormRequest
         $folioBase = 'required|numeric|min:0';
 
         if($this->folioModificado == '1'){
-            $folioBase .= '|unique:App\Models\d_analisi,folio';
+            $folioBase .= '|'. Rule::unique('d_analisis')->where(function ($query){
+                return $query->where('d_analisis.tfolio_id', $this->tFolio);
+            });
         }
         
         return [

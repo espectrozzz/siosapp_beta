@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 use Laravel\Ui\Presets\React;
 
 class finalizarFormRequest extends FormRequest
@@ -26,7 +27,7 @@ class finalizarFormRequest extends FormRequest
     {
         $folioBase = 'required|numeric|min:0|';
      if(($this->form== 2 && $this->detalle != 1) || ($this->folioModificado == '1')){
-        $folioBase = $folioBase.'unique:App\Models\d_analisi,folio';
+        $folioBase = $folioBase.Rule::unique('d_analisis')->where('d_analisis.tfolio_id', $this->tFolio);
      }
         return [
             'folio' => $folioBase,
