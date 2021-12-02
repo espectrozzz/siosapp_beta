@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSupervisorDistritosTable extends Migration
+class CreateCIncidenciasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateSupervisorDistritosTable extends Migration
      */
     public function up()
     {
-        Schema::create('supervisor_distritos', function (Blueprint $table) {
-            $table->foreignId('distrito_id')->references('id')->on('c_distritos');
-            $table->foreignId('supervisor_id')->references('id')->on('c_supervisors');
+        Schema::create('c_incidencias', function (Blueprint $table) {
+            $table->id();
+            $table->char('descripcion', 255);
         });
     }
 
@@ -26,6 +26,6 @@ class CreateSupervisorDistritosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('supervisor_distritos');
+        Schema::dropIfExists('c_incidencias');
     }
 }
