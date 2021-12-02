@@ -15,6 +15,7 @@ use App\Models\c_justificacion_pausa;
 use App\Models\c_falla;
 use App\Models\c_tecnico;
 use App\Models\c_estatu;
+use App\Models\c_incidencia;
 use App\Models\supervisor_distrito;
 use DateTime;
 use Illuminate\Http\Request;
@@ -111,7 +112,7 @@ class getComboController extends Controller
         $justificacion  = c_justificacion_pausa::all();
         $distritos      = c_distrito::all();
         $fallas         = c_falla::all();
-        $tipo_Folio     = c_tipo_folio::where('campo_1',1)->get();
+        $tipo_Folio     = c_incidencia::find(2)->tFolios()->get();
         $causas         = c_causa::all();
         $despacho       = c_despacho::all();
         $tecnicos       = c_tecnico::all(); 
@@ -126,7 +127,7 @@ class getComboController extends Controller
         $justificacion  = c_justificacion_pausa::all();
         $distritos      = c_distrito::all();
         $fallas         = c_falla::all();
-        $tipo_Folio     = c_tipo_folio::where('campo_1',2)->get();
+        $tipo_Folio     = c_incidencia::find(1)->tFolios()->get();
         $causas         = c_causa::all();
         $despacho       = c_despacho::all();
         $tecnicos       = c_tecnico::all();
