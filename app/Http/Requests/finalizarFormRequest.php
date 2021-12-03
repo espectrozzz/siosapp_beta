@@ -32,7 +32,7 @@ class finalizarFormRequest extends FormRequest
         return [
             'folio' => $folioBase,
             'tFolio' => 'required',
-            'ot' => 'numeric|min:0',
+            'OT' => 'numeric|min:0|'. Rule::requiredIf($this->tFolio != 1),
             'turno' => 'required',
             'distrito_id' => 'required',
             'cluster' => 'required',
@@ -75,6 +75,7 @@ class finalizarFormRequest extends FormRequest
             'turno.required'                => 'Debe de seleccionar un turno.',
             'ot.numeric'                    => 'La OT debe de ser un número.',
             'ot.min'                        => 'La OT debe de ser un número mayor a cero.',
+            'OT.required_if'                       => 'La OT es obligatoria para finalizar el folio.',
             'distrito_id.required'          => 'Debe de seleccionar un distrito.',
             'cluster.required'              => 'Debe de seleccionar un cluster.',
             'falla.required'                => 'Debe de seleccionar una falla.',

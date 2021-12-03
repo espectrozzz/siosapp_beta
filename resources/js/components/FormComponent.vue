@@ -15,7 +15,7 @@
                 <label for="folio">Folio</label>
             </div>
             <div class="form-floating col col-md-4 col-lg-4">
-                <select v-model="idTipoFolio" name="tFolio" id="tFolio" :value="'1'" class="form-select" @change="calcTiempo" :disabled="role==1">
+                <select v-model="idTipoFolio" name="tFolio" id="tFolio" :value="'1'" class="form-select" @change="isOtFunction" :disabled="role==1">
                     <option value="">Seleccione el tipo de folio</option>
                     <option v-for="(value,index) in tFolio" v-bind:key="index" v-bind:value="tFolio[index].id">
                         {{tFolio[index].descripcion}}
@@ -81,10 +81,12 @@
             <input v-model="numCliente" id="nClientes" type="number" pattern="^[0-9]+" min=0 class="form-control positivo" name="nClientes" :disabled="role==1" >
             <label for="nClientes">Clientes Afectados</label>
            </div>
-           <div class="form-floating col-6 col-md-3">
+           <transition name="slide-fade">
+           <div v-if="isOt" class="form-floating col-6 col-md-3">
                <input v-model="ot" id="ot" type="text" class="form-control positivo" name="ot" :disabled="role==1">
                <label for="ot">OT</label>
            </div>
+           </transition>
         </div>
     </div>
     <div class="form-group">
@@ -312,6 +314,7 @@
     export default {
         data(){
             return{
+             isOt: false,
              folio:'',
              idTipoFolio:'',   
              tFolio:[],
@@ -1037,6 +1040,10 @@ else{
                 }
             }                
         }
+    },
+    isOtFunction(){
+        this.isOt = this.idTipoFolio === 1 ? false:true;
+        this.calcTiempo();
     },
         },
 }
