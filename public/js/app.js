@@ -2190,9 +2190,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      isOt: false,
       folio: '',
       idTipoFolio: '',
       tFolio: [],
@@ -2924,6 +2927,10 @@ __webpack_require__.r(__webpack_exports__);
           }
         }
       }
+    },
+    isOtFunction: function isOtFunction() {
+      this.isOt = this.idTipoFolio === 1 ? false : true;
+      this.calcTiempo();
     }
   }
 });
@@ -32685,7 +32692,7 @@ var render = function() {
                         ? $$selectedVal
                         : $$selectedVal[0]
                     },
-                    _vm.calcTiempo
+                    _vm.isOtFunction
                   ]
                 }
               },
@@ -32842,192 +32849,205 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "form-group" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "form-floating col-md-4" }, [
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.falla_select,
-                    expression: "falla_select"
-                  }
-                ],
-                staticClass: "form-select",
-                attrs: { name: "falla", id: "falla", disabled: _vm.role == 1 },
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.falla_select = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  }
-                }
-              },
-              [
-                _c("option", { attrs: { value: "" } }, [
-                  _vm._v("Seleccione una falla")
-                ]),
-                _vm._v(" "),
-                _vm._l(_vm.cFalla, function(value, index) {
-                  return _c(
-                    "option",
-                    { key: index, domProps: { value: _vm.cFalla[index].id } },
-                    [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(_vm.cFalla[index].descripcion) +
-                          "\n                    "
-                      )
-                    ]
-                  )
-                })
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "falla" } }, [_vm._v("Falla")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-floating col-md-4" }, [
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.causa_select,
-                    expression: "causa_select"
-                  }
-                ],
-                staticClass: "form-select",
-                attrs: {
-                  name: "cAfectacion",
-                  id: "cAfectacion",
-                  required: "",
-                  disabled: _vm.role == 1
-                },
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.causa_select = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  }
-                }
-              },
-              [
-                _c("option", { attrs: { value: "" } }, [
-                  _vm._v("Seleccione una causa")
-                ]),
-                _vm._v(" "),
-                _vm._l(_vm.cCausa, function(value, index) {
-                  return _c(
-                    "option",
-                    { key: index, domProps: { value: _vm.cCausa[index].id } },
-                    [
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(_vm.cCausa[index].descripcion) +
-                          "\n                "
-                      )
-                    ]
-                  )
-                })
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "cAfectacion" } }, [
-              _vm._v("Causa/Afectacion")
-            ])
-          ]),
-          _vm._v(" "),
-          this.form != 2
-            ? _c("div", { staticClass: "form-floating col-4 col-md-1" }, [
-                _c("input", {
+        _c(
+          "div",
+          { staticClass: "row" },
+          [
+            _c("div", { staticClass: "form-floating col-md-4" }, [
+              _c(
+                "select",
+                {
                   directives: [
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.numCliente,
-                      expression: "numCliente"
+                      value: _vm.falla_select,
+                      expression: "falla_select"
                     }
                   ],
-                  staticClass: "form-control positivo",
+                  staticClass: "form-select",
                   attrs: {
-                    id: "nClientes",
-                    type: "number",
-                    pattern: "^[0-9]+",
-                    min: "0",
-                    name: "nClientes",
+                    name: "falla",
+                    id: "falla",
                     disabled: _vm.role == 1
                   },
-                  domProps: { value: _vm.numCliente },
                   on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.numCliente = $event.target.value
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.falla_select = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
                     }
                   }
-                }),
-                _vm._v(" "),
-                _c("label", { attrs: { for: "nClientes" } }, [
-                  _vm._v("Clientes Afectados")
-                ])
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-floating col-6 col-md-3" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.ot,
-                  expression: "ot"
-                }
-              ],
-              staticClass: "form-control positivo",
-              attrs: {
-                id: "ot",
-                type: "text",
-                name: "ot",
-                disabled: _vm.role == 1
-              },
-              domProps: { value: _vm.ot },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.ot = $event.target.value
-                }
-              }
-            }),
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [
+                    _vm._v("Seleccione una falla")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.cFalla, function(value, index) {
+                    return _c(
+                      "option",
+                      { key: index, domProps: { value: _vm.cFalla[index].id } },
+                      [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(_vm.cFalla[index].descripcion) +
+                            "\n                    "
+                        )
+                      ]
+                    )
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "falla" } }, [_vm._v("Falla")])
+            ]),
             _vm._v(" "),
-            _c("label", { attrs: { for: "ot" } }, [_vm._v("OT")])
-          ])
-        ])
+            _c("div", { staticClass: "form-floating col-md-4" }, [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.causa_select,
+                      expression: "causa_select"
+                    }
+                  ],
+                  staticClass: "form-select",
+                  attrs: {
+                    name: "cAfectacion",
+                    id: "cAfectacion",
+                    required: "",
+                    disabled: _vm.role == 1
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.causa_select = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [
+                    _vm._v("Seleccione una causa")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.cCausa, function(value, index) {
+                    return _c(
+                      "option",
+                      { key: index, domProps: { value: _vm.cCausa[index].id } },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(_vm.cCausa[index].descripcion) +
+                            "\n                "
+                        )
+                      ]
+                    )
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "cAfectacion" } }, [
+                _vm._v("Causa/Afectacion")
+              ])
+            ]),
+            _vm._v(" "),
+            this.form != 2
+              ? _c("div", { staticClass: "form-floating col-4 col-md-1" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.numCliente,
+                        expression: "numCliente"
+                      }
+                    ],
+                    staticClass: "form-control positivo",
+                    attrs: {
+                      id: "nClientes",
+                      type: "number",
+                      pattern: "^[0-9]+",
+                      min: "0",
+                      name: "nClientes",
+                      disabled: _vm.role == 1
+                    },
+                    domProps: { value: _vm.numCliente },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.numCliente = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("label", { attrs: { for: "nClientes" } }, [
+                    _vm._v("Clientes Afectados")
+                  ])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("transition", { attrs: { name: "slide-fade" } }, [
+              _vm.isOt
+                ? _c("div", { staticClass: "form-floating col-6 col-md-3" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.ot,
+                          expression: "ot"
+                        }
+                      ],
+                      staticClass: "form-control positivo",
+                      attrs: {
+                        id: "ot",
+                        type: "text",
+                        name: "ot",
+                        disabled: _vm.role == 1
+                      },
+                      domProps: { value: _vm.ot },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.ot = $event.target.value
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("label", { attrs: { for: "ot" } }, [_vm._v("OT")])
+                  ])
+                : _vm._e()
+            ])
+          ],
+          1
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "form-group" }, [
