@@ -32,7 +32,7 @@ class finalizarFormRequest extends FormRequest
         return [
             'folio' => $folioBase,
             'tFolio' => 'required',
-            'OT' => 'numeric|min:0|'. Rule::requiredIf($this->tFolio != 1),
+            'ot' => Rule::requiredIf($this->tFolio != 1),
             'turno' => 'required',
             'distrito_id' => 'required',
             'cluster' => 'required',
@@ -51,7 +51,6 @@ class finalizarFormRequest extends FormRequest
             'hora_sla' =>'required',
             'material' =>'',
             'material_can'=>'',
-            'ot' => '',
             'material.*' =>'required',
             'latitud' => 'required|regex:/^(-?\d{2}+\.(\d+)?)$/',
             'longitud' => 'required|regex:/^\s*(-\d{2}+\.(\d+)?)$/',

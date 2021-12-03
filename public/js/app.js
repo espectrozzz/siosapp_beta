@@ -2216,7 +2216,7 @@ __webpack_require__.r(__webpack_exports__);
       llegadaIos: '',
       cierreIos: '',
       olt: '',
-      ot: '',
+      ot: 0,
       pausa: '',
       cantPausa: '',
       eta: '',
