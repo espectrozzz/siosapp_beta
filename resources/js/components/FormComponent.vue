@@ -593,6 +593,7 @@
                     this.agregarConcepto();
                     i++;
                 });
+                this.isOt = this.idTipoFolio === 1 ? false:true;
                 i=0;
                 this.datos[5].forEach(element =>{
                     this.agregarCab24();

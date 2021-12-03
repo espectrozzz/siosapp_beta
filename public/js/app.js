@@ -2456,6 +2456,7 @@ __webpack_require__.r(__webpack_exports__);
 
           i++;
         });
+        this.isOt = this.idTipoFolio === 1 ? false : true;
         i = 0;
         this.datos[5].forEach(function (element) {
           _this3.agregarCab24();
