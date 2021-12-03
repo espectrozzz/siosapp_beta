@@ -40,7 +40,7 @@ class InformacionController extends Controller
         if($request->olt != null || $request->olt != ''){
             $analisis->olt                  =   $request->olt;
         }
-        if($request->ot != null || $request->ot != ''){
+        if($request->ot){
             $analisis->OT                   =   $request->ot;
         }
         if($request->hora_eta == null || $request->hora_eta == ''){
@@ -176,7 +176,7 @@ class InformacionController extends Controller
         if($request->olt != null || $request->olt != ''){
             $analisis->olt                  =   $request->olt;
         }
-        if($request->ot != null || $request->ot != ''){
+        if($request->ot){
             $analisis->OT                   =   $request->ot;
         }
         if($request->hora_eta == null || $request->hora_eta == ''){
