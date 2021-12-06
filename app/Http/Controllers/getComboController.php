@@ -114,7 +114,7 @@ class getComboController extends Controller
         $fallas         = c_falla::all();
         $tipo_Folio     = c_incidencia::find(2)->tFolios()->get();
         $causas         = c_causa::all();
-        $despacho       = c_despacho::all();
+        $despacho       = c_despacho::where('estado_id', 1)->get();
         $tecnicos       = c_tecnico::all(); 
         $materialesTTP  = c_materiale::where('tipo_material',2)->get();
         $materialesIOS  = c_materiale::where('tipo_material',1)->get();
@@ -129,7 +129,7 @@ class getComboController extends Controller
         $fallas         = c_falla::all();
         $tipo_Folio     = c_incidencia::find(1)->tFolios()->get();
         $causas         = c_causa::all();
-        $despacho       = c_despacho::all();
+        $despacho       = c_despacho::where('estado_id', 1)->get();
         $tecnicos       = c_tecnico::all();
         $materialesTTP  = c_materiale::where('tipo_material',2)->get();
         $materialesIOS  = c_materiale::where('tipo_material',1)->get();
@@ -140,7 +140,9 @@ class getComboController extends Controller
 
     public function ComboTecnico(Request $request){
         if($request->ajax()){
-        $tecnicos = c_tecnico::where('supervisor_id',$request->tecnico_id)->get();
+        $tecnicos = c_tecnico::where('supervisor_id',$request->tecnico_id)
+                            ->where('estado_id', 1)
+                            ->get();
         }
         return response()->json($tecnicos);
     }
