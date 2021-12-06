@@ -335,7 +335,7 @@
              llegadaIos:'',
              cierreIos:'',
              olt:'',
-             ot:0,
+             ot:'',
              pausa:'',
              cantPausa:'',
              eta:'',
