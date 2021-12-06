@@ -14,7 +14,7 @@ class TableUserActive extends Migration
     public function up()
     {
         Schema::table('users', function(Blueprint $table){
-            $table->foreignId('estado_id')->references('id')->on('c_estados');
+            $table->foreignId('estado_id')->references('id')->on('c_estados')->default(1);
         });
     }
 
