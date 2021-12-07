@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class c_materiale extends Model
 {
     use HasFactory;
+
 }

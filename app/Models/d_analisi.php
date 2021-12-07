@@ -81,6 +81,10 @@ class d_analisi extends Model
             return $query->whereRaw("MONTH(d_calc_tiempos.activacion) = '".date("m")."'"); 
         }
     }
+
+    public function clusters(){
+        return $this->hasOne('App\Models\c_cluster', 'id', 'cluster_id');
+    }
 }
 
 
