@@ -3,6 +3,7 @@
     <tr>
         <th style="font-weight: bold;">FOLIO</th>
         <th>TIPO FOLIO</th>
+        <th>OT</th>
         <th>INCIDENCIA</th>
         <th>TURNO</th>
         <th>DISTRITO</th>
@@ -43,6 +44,9 @@
                 </td>
                 <td>
                     {{ $material->tipofolio }}
+                </td>
+                <td>
+                    {{ $material->OT }}
                 </td>
                 <td>
                     {{ $material->incidencia }}
