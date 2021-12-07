@@ -37,14 +37,14 @@ class UsersExport implements FromView//FromQuery,WithHeadings,WithMapping
     public function view(): View 
     {
         return view('excel.plantilla', [
-            'materiales'=>d_analisi::select('d_analisis.folio as folio','d_calc_tiempos.activacion as activacion','c_clusters.descripcion as cluster',DB::raw('concat_ws(",",d_ubicaciones.latitud,d_ubicaciones.longitud) as coordenadas'),'d_materiales.material_id as material','d_materiales.cantidad as cantidad','c_tipo_folios.descripcion as tipofolio','c_incidencia.descripcion as incidencia','c_turnos.descripcion as turno', 'c_distritos.descripcion as distrito', 'c_fallas.descripcion as falla','c_causas.descripcion as causa','d_analisis.clientes_afectados as clientesafectados','d_calc_tiempos.asignacion_ios as asignacionios', 'd_calc_tiempos.llegada as llegada','d_calc_tiempos.activacion as activacion', 'd_calc_tiempos.eta as eta', 'd_calc_tiempos.sla as sla','c_despachos.Nombre as nombredespacho','c_tecnicos.Nombre as tecnico','c_estatus.descripcion as estatus' )
+            'materiales'=>d_analisi::select('d_analisis.folio as folio','d_calc_tiempos.activacion as activacion','c_clusters.descripcion as cluster',DB::raw('concat_ws(",",d_ubicaciones.latitud,d_ubicaciones.longitud) as coordenadas'),'d_materiales.material_id as material','d_materiales.cantidad as cantidad','c_tipo_folios.descripcion as tipofolio','c_incidencias.descripcion as incidencia','c_turnos.descripcion as turno', 'c_distritos.descripcion as distrito', 'c_fallas.descripcion as falla','c_causas.descripcion as causa','d_analisis.clientes_afectados as clientesafectados','d_calc_tiempos.asignacion_ios as asignacionios', 'd_calc_tiempos.llegada as llegada','d_calc_tiempos.activacion as activacion', 'd_calc_tiempos.eta as eta', 'd_calc_tiempos.sla as sla','c_despachos.Nombre as nombredespacho','c_tecnicos.Nombre as tecnico','c_estatus.descripcion as estatus' )
                               ->join('d_calc_tiempos','d_calc_tiempos.folio_id','d_analisis.id')
                               ->join('c_clusters','c_clusters.id','d_analisis.cluster_id')
                               ->join('d_ubicaciones','d_ubicaciones.folio_id','d_analisis.id')
                               ->join('d_materiales','d_materiales.folio_id','d_analisis.id')
                               ->join('c_materiales','c_materiales.id','d_materiales.material_id')
                               ->join('c_tipo_folios','c_tipo_folios.id','d_analisis.tfolio_id')
-                              ->join('c_incidencia','c_incidencia.id','d_analisis.tipo_folio')
+                              ->join('c_incidencias','c_incidencias.id','d_analisis.tipo_folio')
                               ->join('c_distritos','c_distritos.id','d_analisis.distrito_id')
                               ->join('c_turnos','c_turnos.id','d_analisis.turno_id')
                               ->join('c_fallas','c_fallas.id','d_analisis.falla_id')
