@@ -95,6 +95,7 @@ class PageController extends Controller
                               ->join('c_tecnicos','c_tecnicos.id','d_analisis.tecnico_id')
                               ->join('c_estatus','c_estatus.id','d_analisis.estatus_id')
                               ->where('c_materiales.tipo_material', 1)
+                              ->whereMonth('created_at', 12)
                             //   ->FiltrarDistrito($this->distrito)
                               // ->orWhere('d_analisis.distrito_id', 7) NO
                             //   ->FiltrarTipoFolio($this->incidencia)
@@ -109,6 +110,7 @@ class PageController extends Controller
                               ->join('d_materiales','d_materiales.folio_id','d_analisis.id')
                               ->join('c_materiales','c_materiales.id','d_materiales.material_id')
                               ->where('c_materiales.tipo_material', 1)
+                              ->whereMonth('created_at', 12)
                               ->orderBy('d_analisis.id')
                               ->orderBy('d_materiales.material_id')
                               ->get(),
