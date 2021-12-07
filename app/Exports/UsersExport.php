@@ -52,7 +52,7 @@ class UsersExport implements FromView//FromQuery,WithHeadings,WithMapping
                               ->join('c_despachos','c_despachos.id','d_analisis.despacho_id')
                               ->join('c_tecnicos','c_tecnicos.id','d_analisis.tecnico_id')
                               ->join('c_estatus','c_estatus.id','d_analisis.estatus_id')
-                              ->where('c_materiales.tipo_material',2)
+                              ->where('c_materiales.tipo_material',1)
                               ->FiltrarDistrito($this->distrito)
                               // ->orWhere('d_analisis.distrito_id', 7)
                               ->FiltrarTipoFolio($this->incidencia)
@@ -66,12 +66,12 @@ class UsersExport implements FromView//FromQuery,WithHeadings,WithMapping
                               ->join('d_ubicaciones','d_ubicaciones.folio_id','d_analisis.id')
                               ->join('d_materiales','d_materiales.folio_id','d_analisis.id')
                               ->join('c_materiales','c_materiales.id','d_materiales.material_id')
-                              ->where('c_materiales.tipo_material',2)
+                              ->where('c_materiales.tipo_material',1)
                               ->orderBy('d_analisis.id')
                               ->orderBy('d_materiales.material_id')
                               ->get(),
             'catalogos'=>c_materiale::select('c_materiales.id as id', 'c_materiales.descripcion as descripcion')
-                                     ->where('c_materiales.tipo_material', 2)
+                                     ->where('c_materiales.tipo_material', 1)
                                      ->orderBy('c_materiales.id')
                                      ->get()
         ]);
