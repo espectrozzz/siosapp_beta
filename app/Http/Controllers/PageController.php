@@ -19,7 +19,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use DateTime;
 use App\Exports\MaterialExport;
-use App\Exports\UsersExport;
+// use App\Exports\UsersExport;
 use App\Models\c_materiale;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
@@ -76,9 +76,9 @@ class PageController extends Controller
         return view('reportes',compact('distritos'));
     }
 
-    public function export(Request $request)
-    {
-        return Excel::download(new UsersExport($request), 'materiales.xlsx');
-    }
+    // public function export(Request $request)
+    // {
+    //     return Excel::download(new MaterialExport($request), 'materiales.xlsx');
+    // }
 }
 

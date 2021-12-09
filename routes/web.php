@@ -13,7 +13,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\whatsappApiController;
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\PermissonController;
-
+use App\Http\Controllers\ReportesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,7 +100,7 @@ Route::middleware(['auth', 'active'])->group(function () {
 	Route::get('/copiar-script/{id}',[whatsappApiController::class,'copiarScriptController']);
 	Route::get('/markAsRead',[NotificationController::class,'markAsRead'])->name('markAsRead');
 	Route::get('/reportes',[PageController::class,'reportes'])->name('/reportes');
-	Route::get('/export', [PageController::class,'export']);
+	Route::get('/export', [ReportesController::class,'Export']);
 	Route::get('/comboTecnico',[getComboController::class,'ComboTecnico']);
 	Route::get('/cargar-roles', [PermissonController::class,'selectRoles']);
 	Route::get('/cargar-tabla-permisos', [PermissonController::class,'tablaRoles']);

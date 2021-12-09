@@ -82,8 +82,8 @@ class d_analisi extends Model
         }
     }
 
-    public function clusters(){
-        return $this->hasOne('App\Models\c_cluster', 'id', 'cluster_id');
+    public function tipoFolio(){
+        return $this->belongsTo('App\Models\c_tipo_folio', 'tfolio_id', 'id');
     }
 }
 
