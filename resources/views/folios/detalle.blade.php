@@ -17,7 +17,7 @@
         <div id="app">
             <form method="POST">
                 @csrf
-        <form-component :form="{{$analisis[0][0]->tipo_folio}}" v-bind:datos='{{json_encode($analisis)}}' v-bind:detalle="1"></form-component>
+        <form-component :form="{{$analisis[0][0]->incidencia_id}}" v-bind:datos='{{json_encode($analisis)}}' v-bind:detalle="1"></form-component>
             </form>
             
         </div>

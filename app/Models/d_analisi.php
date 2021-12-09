@@ -43,14 +43,14 @@ class d_analisi extends Model
         }
     public function scopeSearchTipoFolio($query,$tipoFolio){
         if($tipoFolio){
-            return $query->where('d_analisis.tipo_folio',$tipoFolio);
+            return $query->where('d_analisis.incidencia_id',$tipoFolio);
         }
     }
 
     public function scopeFiltrarTipoFolio($query,$tipoFolio){
         if($tipoFolio){
             if ($tipoFolio != 0) {
-                return $query->where('d_analisis.tipo_folio',$tipoFolio);
+                return $query->where('d_analisis.incidencia_id',$tipoFolio);
             }
         }
     }

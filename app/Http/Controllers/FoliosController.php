@@ -112,6 +112,7 @@ class FoliosController extends Controller
                                     ->join('d_coo_daños','d_coo_daños.folio_id','d_analisis.id')
                                     ->where('d_analisis.id',$id)
                                     ->get();
+                                    
             return view('folios.detalle',compact('analisis'));
         }
 
