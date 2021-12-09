@@ -52,7 +52,7 @@ class InformacionController extends Controller
         if($request->hora_sla != null || $request->hora_sla != ''){
             $analisis->estatus_id = 4;
         }
-        $analisis->tipo_folio = 1;
+        $analisis->incidencia_id = 1;
         $analisis->save();
 
         $folioid = $analisis->id;
@@ -172,7 +172,7 @@ class InformacionController extends Controller
         $analisis->supervisor_id = $request->supervisorTTP;
         $analisis->tecnico_id = $request->tecnicoIos;
         $analisis->estatus_id = 1;
-        $analisis->tipo_folio = 2;
+        $analisis->incidencia_id = 2;
         if($request->olt != null || $request->olt != ''){
             $analisis->olt                  =   $request->olt;
         }

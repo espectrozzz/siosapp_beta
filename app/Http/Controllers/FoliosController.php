@@ -327,7 +327,7 @@ class FoliosController extends Controller
                 }
                 $analisis->supervisor_id        = $request->supervisorTTP;
                 $analisis->tecnico_id           = $request->tecnicoIos;
-                $analisis->tipo_folio           = 2; 
+                $analisis->incidencia_id           = 2; 
                 if($request->olt){
                     $analisis->olt                  =   $request->olt;
                 }
@@ -513,7 +513,7 @@ class FoliosController extends Controller
 
     imagenes($request,$analisis->id);
 
-        if($analisis->tipo_folio == 1){
+        if($analisis->incidencia_id == 1){
              $this->enviarScript($analisis->id, 1);
         }
         activity()->useLog('finalize')
@@ -531,7 +531,7 @@ class FoliosController extends Controller
                                   ->where('c_tecnicos.user_id',auth()->id())
                                   ->where('d_analisis.estatus_id','>=',1)
                                   ->where('d_analisis.estatus_id','<=',2)
-                                  ->where('d_analisis.tipo_folio',1)
+                                  ->where('d_analisis.incidencia_id',1)
                                   ->first();
             if($tecnico != '')
             {
