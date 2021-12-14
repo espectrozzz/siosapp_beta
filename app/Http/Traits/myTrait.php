@@ -37,7 +37,7 @@ $calc_tiempos = d_calc_tiempo::where('folio_id','=',$id)->first();
 
 $ubicacion = d_ubicacione::where('folio_id','=',$id)->first();
 
-$url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='.$ubicacion->latitud.','.$ubicacion->longitud.'&location_type=ROOFTOP&result_type=street_address&key=AIzaSyDbzmEj008dR-rZYg_qLSP7M9rxBE-97jg';
+$url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='.$ubicacion->latitud.','.$ubicacion->longitud.'&location_type=ROOFTOP&result_type=street_address&key=AIzaSyBqOgizUSx7Sx4RudGJH841N0ODjepjMl4';
 $bddUbicacion = d_ubicacione::where('folio_id',$id)->first();
 $direccion = curl_get_file_contents($url,null);
 $bddUbicacion->ubicacion = $direccion;
