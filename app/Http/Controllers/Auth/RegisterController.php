@@ -80,11 +80,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // return "Hola";
         $usuario_creado = User::create([
             'name' => $data['nombre'],
             'email' => $data['usuario'],
             'password' => Hash::make($data['password']),
+            // 'estado_id' => 1,
         ]);
 
         $usuario_creado->assignRole($data['rol']);
