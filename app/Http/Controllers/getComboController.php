@@ -17,6 +17,7 @@ use App\Models\c_tecnico;
 use App\Models\c_estatu;
 use App\Models\c_incidencia;
 use App\Models\supervisor_distrito;
+use App\Models\supervisor_has_tecnico;
 use DateTime;
 use Illuminate\Http\Request;
 use stdClass;
@@ -140,10 +141,15 @@ class getComboController extends Controller
 
     public function ComboTecnico(Request $request){
         if($request->ajax()){
-        $tecnicos = c_tecnico::where('supervisor_id',$request->tecnico_id)
-                            ->where('estado_id', 1)
-                            ->get();
-        }
+        // $tecnicos = c_tecnico::where('supervisor_id', $request->tecnico_id)
+        //                     ->where('estado_id', 1)
+        //                     ->get();
+        // }
+        $tecnicos = supervisor_has_tecnico::select('c_tecnicos.id','c_tecnicos.Nombre')
+                                            ->join('c_tecnicos','c_tecnicos.id','=','supervisor_has_tecnicos.tecnico_id')
+                                            ->where('supervisor_has_tecnicos.supervisor_id','=',$request->tecnico_id)
+                                            ->get();
         return response()->json($tecnicos);
+        }
     }
 }
